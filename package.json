@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "serve:backend": "node index",
         "start:backend": "nodemon index",
         "start:frontend": "cd social-media-client/ && npm start"
     },
