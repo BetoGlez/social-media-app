@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon index"
+        "start:backend": "nodemon index",
+        "start:frontend": "cd social-media-client/ && npm start"
     },
     "keywords": [],
     "author": "",
