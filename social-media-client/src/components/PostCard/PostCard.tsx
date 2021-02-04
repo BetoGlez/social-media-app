@@ -3,6 +3,8 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { Tooltip } from "primereact/tooltip";
 import { InputTextarea } from "primereact/inputtextarea";
+import { Divider } from "primereact/divider";
+import { Avatar } from "primereact/avatar";
 
 import { IPost } from "../../graphql/models/post.model";
 import { ILike } from "../../graphql/models/like.model";
@@ -44,11 +46,15 @@ const PostCard: React.FC<PostCardProps> = (props) => {
             <div className="p-d-flex p-flex-column p-mt-5">
                 {
                     props.post.comments.map(comment => (
-                        <div key={comment.id} className="p-d-flex p-flex-column p-mt-3" style={{ border: "0.5px solid lightgray", padding: "10px" }}>
-                            <p className="p-m-0">{ comment.body }</p>
+                        <div key={comment.id} className="p-d-flex p-flex-column p-mt-3" style={{ padding: "10px" }}>
+                            <div className="p-d-flex p-ai-center">
+                                <Avatar className="p-mr-3" shape="circle" image={`https://picsum.photos/${Math.floor(Math.random() * (500 - 100) + 100)}`} />
+                                <p className="p-m-0">{ comment.body }</p>
+                            </div>
                             <div className="p-d-flex p-mt-1 p-jc-end" style={{ opacity: "0.5" }}>
                                 <p className="p-m-0">{ comment.username } on { composePostDate(comment.createdAt) }</p>
                             </div>
+                            <Divider />
                         </div>
                     ))
                 }

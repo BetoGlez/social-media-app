@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
             <div className="p-grid">
                 {
                     !loading && data && data.getPosts.map(post => (
-                        <div key={post.id} className="p-col-4">
+                        <div key={post.id} className="p-col-12">
                             <PostCard className="p-m-6" post={post}/>
                         </div>
                     ))
