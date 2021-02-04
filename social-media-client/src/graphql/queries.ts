@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export abstract class GraphQlQueries {
-    public static readonly GET_POSTS_QUERY = gql`
+export abstract class gqlQueries {
+    public static readonly GET_POSTS = gql`
     {
         getPosts {
             id

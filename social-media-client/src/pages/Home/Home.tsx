@@ -1,13 +1,13 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 
-import { GraphQlQueries } from "../../graphql/queries";
-import { GetPostsData } from "../../graphql/models/post.model";
+import { gqlQueries } from "../../graphql/queries";
+import { IGetPostsData } from "../../graphql/models/post.model";
 import PostCard from "../../components/PostCard/PostCard";
 
 const HomePage: React.FC = () => {
 
-    const { loading, data } = useQuery<GetPostsData>(GraphQlQueries.GET_POSTS_QUERY);
+    const { loading, data } = useQuery<IGetPostsData>(gqlQueries.GET_POSTS);
 
     return (
         <div className="p-d-flex p-flex-column p-ai-center">

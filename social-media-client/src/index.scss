@@ -5,10 +5,13 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #17222f;
+    background-color: #20272d;
     h1, h2, h3, h4, h5, h6, p {
         color: white;
         font-weight: 200;
+    }
+    h1 {
+        font-size: 60px;
     }
 }
 

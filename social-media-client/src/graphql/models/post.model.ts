@@ -11,6 +11,6 @@ export interface IPost {
     commentCount: number;
     likeCount: number;
 }
-export interface GetPostsData {
+export interface IGetPostsData {
     getPosts: Array<IPost>;
 }

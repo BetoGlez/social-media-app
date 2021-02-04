@@ -38,7 +38,7 @@ module.exports = {
             // Save element in mongo DB with save() on a model
             const result = await newUser.save();
 
-            const token = generateToken(res);
+            const token = generateToken(result);
 
             return {
                 ...result._doc,
