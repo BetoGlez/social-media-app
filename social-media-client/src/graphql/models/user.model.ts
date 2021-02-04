@@ -15,3 +15,11 @@ export interface IRegisterUserPayload {
 export interface IRegisterUserData {
     register: IUser;
 }
+
+export interface ILoginUserPayload {
+    username: string;
+    password: string;
+}
+export interface ILoginUserData {
+    login: IUser;
+}

@@ -24,4 +24,23 @@ export abstract class gqlMutations {
             }
         }
     `;
+    public static readonly LOGIN_USER = gql`
+        mutation login(
+            $username: String!
+            $password: String!
+        ) {
+            login(
+                loginInput: {
+                    username: $username
+                    password: $password
+                }
+            ) {
+                id
+                username
+                email
+                token
+                createdAt
+            }
+        }
+    `;
 }
