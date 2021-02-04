@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -7,6 +7,7 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import { ApolloCache, ApolloError, FetchResult, useMutation } from "@apollo/client";
 import { FormikHelpers, useFormik } from "formik";
 
+import AuthContext from "../../data/auth-context";
 import { IRegisterUserData, IRegisterUserPayload } from "../../graphql/models/user.model";
 import { gqlMutations } from "../../graphql/mutations";
 
@@ -26,6 +27,7 @@ const RegisterPage: React.FC = () => {
         confirmPassword: ""
     };
     const history = useHistory();
+    const authContext = useContext(AuthContext);
     const [registerFromValues, setRegisterFormValues] = useState<RegisterFormValues>(INITIAL_REGISTER_FORM_VALUES);
     const [formErrors, setFormErrors] = useState<any>({});
     const toast = useRef<Toast>(null);
@@ -45,8 +47,11 @@ const RegisterPage: React.FC = () => {
     );
     const getMutationResult = (_: ApolloCache<IRegisterUserData>, result: FetchResult<IRegisterUserData>) => {
         const newUser = result.data?.register;
-        toast.current?.show({severity: "success", summary: "User registered", detail: newUser?.username});
-        history.replace("/");
+        if (newUser) {
+            authContext.login(newUser);
+            toast.current?.show({severity: "success", summary: "User registered", detail: newUser?.username});
+            history.replace("/");
+        }
     };
     const handleError = (err: ApolloError) => {
         const errors = err.graphQLErrors[0].extensions?.exception.errors;

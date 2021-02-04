@@ -10,26 +10,29 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 
-import apolloClient from "./apollo-config";
+import apolloClient from "./apollo/apollo-config";
 import HomePage from "./pages/Home/Home";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
 import MenuBar from "./components/MenuBar/MenuBar";
+import AuthContextProvider from "./data/AuthContextPrivider";
 
 const App = () => {
     PrimeReact.ripple = true;
 
     return (
-        <ApolloProvider client={apolloClient}>
-            <Router>
-                <div className="p-d-flex p-flex-column p-p-2">
-                    <MenuBar />
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/login" component={LoginPage} />
-                    <Route exact path="/register" component={RegisterPage} />
-                </div>
-            </Router>
-        </ApolloProvider>
+        <AuthContextProvider>
+            <ApolloProvider client={apolloClient}>
+                <Router>
+                    <div className="p-d-flex p-flex-column p-p-2">
+                        <MenuBar />
+                        <Route exact path="/" component={HomePage} />
+                        <Route exact path="/login" component={LoginPage} />
+                        <Route exact path="/register" component={RegisterPage} />
+                    </div>
+                </Router>
+            </ApolloProvider>
+        </AuthContextProvider>
     );
 }
 

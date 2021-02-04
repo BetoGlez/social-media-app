@@ -12,6 +12,7 @@ import { ILike } from "../../graphql/models/like.model";
 interface PostCardProps {
     className?: string;
     post: IPost;
+    isUserAuth: boolean;
 }
 const PostCard: React.FC<PostCardProps> = (props) => {
 
@@ -39,10 +40,13 @@ const PostCard: React.FC<PostCardProps> = (props) => {
                 <Button className="p-button-text p-button-rounded p-mr-2" icon="pi pi-thumbs-up" style={ { color: "white" } } />
                 <p className="p-m-0 dataInfoTooltip" data-pr-tooltip={composeUserLikes(props.post.likes)}>{props.post.likeCount}</p>
             </div>
-            <div className="p-d-flex p-mt-4">
-                <InputTextarea style={{width: "100%"}} rows={2} value={newCommentBody} onChange={(e) => setNewCommentBody((e.target as HTMLTextAreaElement).value)}/>
-                <Button className="p-ml-3" label="Add"/>
-            </div>
+            {
+                props.isUserAuth &&
+                <div className="p-d-flex p-mt-4">
+                    <InputTextarea style={{width: "100%"}} rows={2} value={newCommentBody} onChange={(e) => setNewCommentBody((e.target as HTMLTextAreaElement).value)}/>
+                    <Button className="p-ml-3" label="Add"/>
+                </div>
+            }
             <div className="p-d-flex p-flex-column p-mt-5">
                 {
                     props.post.comments.map(comment => (

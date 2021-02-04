@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 
+import AuthContext from "../../data/auth-context";
 import { gqlQueries } from "../../graphql/queries";
 import { IGetPostsData } from "../../graphql/models/post.model";
 import PostCard from "../../components/PostCard/PostCard";
 
 const HomePage: React.FC = () => {
 
+    const { user } = useContext(AuthContext);
     const { loading, data } = useQuery<IGetPostsData>(gqlQueries.GET_POSTS);
 
     return (
@@ -16,7 +18,7 @@ const HomePage: React.FC = () => {
                 {
                     !loading && data && data.getPosts.map(post => (
                         <div key={post.id} className="p-col-12">
-                            <PostCard className="p-m-6" post={post}/>
+                            <PostCard className="p-m-6" post={post} isUserAuth={!!user}/>
                         </div>
                     ))
                 }

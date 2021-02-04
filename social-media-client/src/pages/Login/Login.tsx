@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FormikHelpers, useFormik } from "formik";
 import { ProgressSpinner } from "primereact/progressspinner";
@@ -7,6 +7,7 @@ import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import { ApolloCache, ApolloError, FetchResult, useMutation } from "@apollo/client";
 
+import AuthContext from "../../data/auth-context";
 import { gqlMutations } from "../../graphql/mutations";
 import { ILoginUserData, ILoginUserPayload } from "../../graphql/models/user.model";
 
@@ -23,6 +24,7 @@ const LoginPage: React.FC = () => {
     };
 
     const history = useHistory();
+    const authContext = useContext(AuthContext);
     const [registerFromValues, setRegisterFormValues] = useState<LoginFormValues>(INITIAL_LOGIN_FORM_VALUES);
     const [formErrors, setFormErrors] = useState<any>({});
     const toast = useRef<Toast>(null);
@@ -42,8 +44,11 @@ const LoginPage: React.FC = () => {
     );
     const getMutationResult = (_: ApolloCache<ILoginUserData>, result: FetchResult<ILoginUserData>) => {
         const loggedUser = result.data?.login;
-        console.log("Logged user: ", loggedUser);
-        history.replace("/");
+        if (loggedUser) {
+            console.log("Logged user: ", loggedUser);
+            authContext.login(loggedUser);
+            history.replace("/");
+        }
     };
     const handleError = (err: ApolloError) => {
         const errors = err.graphQLErrors[0].extensions?.exception.errors;
@@ -78,7 +83,7 @@ const LoginPage: React.FC = () => {
                     <div className="p-field p-mb-0" style={{ width: "60%" }}>
                         <span className="p-float-label p-mt-6">
                             <InputText value={loginForm.values.password} onChange={loginForm.handleChange}
-                                id="password" autoComplete="off" style={{ width: "100%" }} />
+                                id="password" autoComplete="off" style={{ width: "100%" }} type="password"/>
                             <label htmlFor="password">Password</label>
                         </span>
                         { formErrors.password && <small id="email" className="p-error p-d-block">{ formErrors.password }</small> }
