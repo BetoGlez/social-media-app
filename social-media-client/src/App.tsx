@@ -16,6 +16,7 @@ import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
 import MenuBar from "./components/MenuBar/MenuBar";
 import AuthContextProvider from "./data/AuthContextPrivider";
+import AuthRoute from "./common/auth/AuthRoute";
 
 const App = () => {
     PrimeReact.ripple = true;
@@ -27,8 +28,8 @@ const App = () => {
                     <div className="p-d-flex p-flex-column p-p-2">
                         <MenuBar />
                         <Route exact path="/" component={HomePage} />
-                        <Route exact path="/login" component={LoginPage} />
-                        <Route exact path="/register" component={RegisterPage} />
+                        <AuthRoute exact path="/login" component={LoginPage} />
+                        <AuthRoute exact path="/register" component={RegisterPage} />
                     </div>
                 </Router>
             </ApolloProvider>
