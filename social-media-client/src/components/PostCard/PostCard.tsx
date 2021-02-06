@@ -8,27 +8,21 @@ import { Divider } from "primereact/divider";
 import { Avatar } from "primereact/avatar";
 
 import { IPost } from "../../graphql/models/post.model";
-import { ILike } from "../../graphql/models/like.model";
+import { IUser } from "../../graphql/models/user.model";
+import LikeButton from "../LikeButton/LikeButton";
 
 interface PostCardProps {
     className?: string;
     post: IPost;
-    isUserAuth: boolean;
+    currentUser: IUser | null;
 }
 const PostCard: React.FC<PostCardProps> = (props) => {
 
     const history = useHistory();
     const [newCommentBody, setNewCommentBody] = useState("");
 
-    const composeUserLikes = (likes: Array<ILike>): string => {
-        let userLikesMsg = "No likes yet";
-        if (likes.length > 0) {
-            userLikesMsg = likes.map(like => {
-                return like.username;
-            })
-            .reduce((prev, curr) => prev + ", " + curr);
-        }
-        return userLikesMsg;
+    const deletePost = (postId: string) => {
+        console.log("Deleting: ", postId);
     };
 
     const composePostDate = (date: string) => {
@@ -39,15 +33,20 @@ const PostCard: React.FC<PostCardProps> = (props) => {
         <div className="p-d-flex p-flex-column">
             <div className="p-d-flex p-ai-center p-jc-start">
                 <Tooltip target=".dataInfoTooltip" mouseTrack mouseTrackLeft={10} />
-                <Button className="p-button-text p-button-rounded p-mr-2" icon="pi pi-thumbs-up" style={ { color: "white" } } />
-                <p className="p-m-0 dataInfoTooltip" data-pr-tooltip={composeUserLikes(props.post.likes)}>{props.post.likeCount}</p>
-                <Button className="p-ml-3 p-button-text p-button-warning" label="Detail"
+                {!!props.currentUser && props.currentUser.username === props.post.username && (
+                <Button className="p-button-outlined p-button-danger p-mr-3" label="Delete"
+                    onClick={() => deletePost(props.post.id)}/>
+                )}
+                <Button className="p-button-outlined p-button-help" label="Detail"
                     onClick={() => history.replace(`/posts/${props.post.id}`)}/>
+                <LikeButton className="p-ml-3" id={props.post.id} likes={props.post.likes}
+                    likeCount={props.post.likeCount} user={props.currentUser}/>
             </div>
             {
-            props.isUserAuth &&
+            !!props.currentUser &&
             <div className="p-d-flex p-mt-4">
-                <InputTextarea style={{width: "100%"}} rows={2} value={newCommentBody} onChange={(e) => setNewCommentBody((e.target as HTMLTextAreaElement).value)}/>
+                <InputTextarea style={{width: "100%"}} rows={2} value={newCommentBody} placeholder="Add a comment..."
+                    onChange={(e) => setNewCommentBody((e.target as HTMLTextAreaElement).value)}/>
                 <Button className="p-ml-3" label="Add"/>
             </div>
             }

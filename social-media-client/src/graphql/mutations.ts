@@ -66,4 +66,16 @@ export abstract class gqlMutations {
             }
         }
     `;
+    public static readonly LIKE_POST = gql`
+        mutation likePost($postId: ID!) {
+            likePost(postId: $postId) {
+                id
+                likes {
+                    id
+                    username
+                }
+                likeCount
+            }
+        }
+    `;
 }

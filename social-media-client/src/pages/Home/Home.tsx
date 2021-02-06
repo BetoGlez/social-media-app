@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
                     {
                     !loading && data && data.getPosts.map(post => (
                         <div key={post.id} className="p-col-10 p-offset-1">
-                            <PostCard className="p-mt-6" post={post} isUserAuth={!!user}/>
+                            <PostCard className="p-mt-6" post={post} currentUser={user}/>
                         </div>
                     ))
                     }

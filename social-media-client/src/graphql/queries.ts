@@ -11,6 +11,7 @@ export abstract class gqlQueries {
             commentCount
             likeCount
             likes {
+                id
                 username
             }
             comments {

@@ -68,7 +68,7 @@ const PostForm: React.FC<PostFormProps> = (props) => {
             <Toast ref={toast} />
             <div className="p-d-flex p-flex-column">
                 <h2>What are you thinking {props.username}?</h2>
-                <InputTextarea style={{width: "100%"}} rows={2} value={newPostBody} placeholder="Tell others something interesting"
+                <InputTextarea style={{width: "100%"}} rows={2} value={newPostBody} placeholder="Tell others something interesting..."
                     onChange={(e) => setNewPostBody((e.target as HTMLTextAreaElement).value)}/>
                 <Button className="p-mt-3" label="Post" onClick={submitNewPost}/>
             </div>

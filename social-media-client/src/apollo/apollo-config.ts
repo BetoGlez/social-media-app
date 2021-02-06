@@ -15,10 +15,20 @@ const authLink = setContext((_, { headers }) => {
         }
     };
 });
-// Configure client
+// Configure client set type policy to prevent merge warning in likes
 const apolloClient = new ApolloClient({
     link:  authLink.concat(httpLink),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache({
+        typePolicies: {
+            Post: {
+                fields: {
+                    likes: {
+                        merge: false
+                    }
+                }
+            }
+        }
+    })
 });
 
 
