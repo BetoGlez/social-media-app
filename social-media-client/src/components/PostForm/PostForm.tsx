@@ -48,7 +48,7 @@ const PostForm: React.FC<PostFormProps> = (props) => {
     const submitNewPost = () => {
         createPost({
             variables: { body: newPostBody },
-            optimisticResponse: {
+            optimisticResponse: newPostBody ? {
                 createPost: {
                     id: "",
                     username: props.username,
@@ -59,7 +59,7 @@ const PostForm: React.FC<PostFormProps> = (props) => {
                     createdAt: new Date().toISOString(),
                     likeCount: 0
                 }
-            }
+            } : undefined
         });
     };
 
