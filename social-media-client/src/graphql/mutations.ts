@@ -43,4 +43,27 @@ export abstract class gqlMutations {
             }
         }
     `;
+    public static readonly CREATE_POST = gql`
+        mutation createPost($body: String!) {
+            createPost(body: $body) {
+                id
+                body
+                createdAt
+                username
+                likes {
+                    id
+                    username
+                    createdAt
+                }
+                comments {
+                    id
+                    body
+                    username
+                    createdAt
+                }
+                likeCount
+                commentCount
+            }
+        }
+    `;
 }

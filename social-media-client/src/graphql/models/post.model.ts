@@ -14,3 +14,10 @@ export interface IPost {
 export interface IGetPostsData {
     getPosts: Array<IPost>;
 }
+
+export interface ICreatePostPayload{
+    body: string;
+}
+export interface ICreatePostData {
+    createPost: IPost;
+}
