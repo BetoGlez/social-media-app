@@ -47,7 +47,19 @@ const PostForm: React.FC<PostFormProps> = (props) => {
 
     const submitNewPost = () => {
         createPost({
-            variables: { body: newPostBody }
+            variables: { body: newPostBody },
+            optimisticResponse: {
+                createPost: {
+                    id: "",
+                    username: props.username,
+                    body: newPostBody,
+                    commentCount: 0,
+                    comments: [],
+                    likes: [],
+                    createdAt: new Date().toISOString(),
+                    likeCount: 0
+                }
+            }
         });
     };
 
