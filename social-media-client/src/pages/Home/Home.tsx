@@ -25,7 +25,7 @@ const HomePage: React.FC = () => {
                 <PostForm className="post-form" username={user.username}/>
             </div>
             }
-            <ScrollPanel style={{ height: !!user ? "55vh" : "75vh" }}>
+            <ScrollPanel style={{ height: !!user ? "55vh" : "75vh", width: "100%" }}>
                 <div className="p-grid">
                     {
                     !loading && data && data.getPosts.map(post => (
