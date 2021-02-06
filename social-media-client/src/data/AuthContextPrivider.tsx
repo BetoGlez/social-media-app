@@ -3,6 +3,7 @@ import jwtDecode, { JwtPayload } from "jwt-decode";
 
 import AuthContext, { AuthContextModel } from "./auth-context";
 import { IUser } from "../graphql/models/user.model";
+import apolloClient from "../apollo/apollo-config";
 
 const AuthContextProvider: React.FC = (props) => {
 
@@ -42,6 +43,7 @@ const AuthContextProvider: React.FC = (props) => {
     const logout = () => {
         setUser(null);
         localStorage.removeItem("jwtToken");
+        apolloClient.resetStore();
     };
 
     const authContext: AuthContextModel = {
