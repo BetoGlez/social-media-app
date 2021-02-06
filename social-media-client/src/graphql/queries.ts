@@ -23,4 +23,25 @@ export abstract class gqlQueries {
         }
     }
     `;
+    public static readonly GET_POST = gql`
+        query getPost($postId: ID!) {
+            getPost(postId: $postId) {
+                id
+                body
+                username
+                comments {
+                    id
+                    body
+                    username
+                }
+                likes {
+                    id
+                    username
+                }
+                likeCount
+                commentCount
+                createdAt
+            }
+        }
+    `;
 }

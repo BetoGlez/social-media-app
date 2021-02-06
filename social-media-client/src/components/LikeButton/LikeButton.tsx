@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "primereact/button";
+import { Tooltip } from "primereact/tooltip";
 import { useMutation } from "@apollo/client";
 
 import { ILike, ILikePostData, ILikePostPayload } from "../../graphql/models/like.model";
@@ -11,7 +12,7 @@ interface LikeButtonProps {
     id: string;
     likes: Array<ILike>;
     likeCount: number;
-    className: string;
+    className?: string;
     user: IUser | null;
 }
 const LikeButton: React.FC<LikeButtonProps> = (props) => {
@@ -51,6 +52,7 @@ const LikeButton: React.FC<LikeButtonProps> = (props) => {
 
     return (
         <div className={`${props.className} p-d-flex p-ai-center p-jc-start`}>
+            <Tooltip target=".dataInfoTooltip" mouseTrack mouseTrackLeft={10} />
             <Button className="p-button-text p-button-rounded p-mr-1" onClick={clikLikeButton}
                 icon={`pi ${liked ? "pi-thumbs-down" : "pi-thumbs-up"}`} />
             <p className="p-m-0 dataInfoTooltip" data-pr-tooltip={composeUserLikes(props.likes)}>{props.likeCount}</p>

@@ -14,6 +14,7 @@ import apolloClient from "./apollo/apollo-config";
 import HomePage from "./pages/Home/Home";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
+import SinglePostPage from "./pages/SinglePost/SinglePost";
 import MenuBar from "./components/MenuBar/MenuBar";
 import AuthContextProvider from "./data/AuthContextPrivider";
 import AuthRoute from "./common/auth/AuthRoute";
@@ -30,6 +31,7 @@ const App = () => {
                         <Route exact path="/" component={HomePage} />
                         <AuthRoute exact path="/login" component={LoginPage} />
                         <AuthRoute exact path="/register" component={RegisterPage} />
+                        <Route exact path="/posts/:postId" component={SinglePostPage} />
                     </div>
                 </Router>
             </ApolloProvider>

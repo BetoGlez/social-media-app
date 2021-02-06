@@ -15,6 +15,13 @@ export interface IGetPostsData {
     getPosts: Array<IPost>;
 }
 
+export interface IGetPostPayload {
+    postId: string;
+}
+export interface IGetPostData {
+    getPost: IPost;
+}
+
 export interface ICreatePostPayload{
     body: string;
 }
