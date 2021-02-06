@@ -28,3 +28,7 @@ export interface ICreatePostPayload{
 export interface ICreatePostData {
     createPost: IPost;
 }
+
+export interface IDeletePostPayload {
+    postId: string;
+}

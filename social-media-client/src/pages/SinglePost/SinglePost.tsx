@@ -31,7 +31,7 @@ const SinglePostPage: React.FC = () => {
             postDetail =
             <div className="p-d-flex p-ai-center p-flex-column" style={{ width: "100%" }}>
                 <h1>Details of {username}'s post</h1>
-                <Card className="p-d-flex p-flex-column" style={{ width: "50%" }}>
+                <Card className="p-d-flex p-flex-column" style={{ width: "80%" }}>
                     <div className="p-d-flex p-ai-center">
                         <Avatar className="p-mr-6" shape="circle" size="xlarge"
                             image={`https://picsum.photos/${Math.floor(Math.random() * (500 - 100) + 100)}`} />

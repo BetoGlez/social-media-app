@@ -78,4 +78,9 @@ export abstract class gqlMutations {
             }
         }
     `;
+    public static readonly DELETE_POST = gql`
+        mutation deletePost($postId: ID!) {
+            deletePost(postId: $postId)
+        }
+    `;
 }
