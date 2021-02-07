@@ -32,11 +32,3 @@ export interface ICreatePostData {
 export interface IDeletePostPayload {
     postId: string;
 }
-
-export interface IDeleteCommentPayload {
-    postId: string;
-    commentId: string;
-}
-export interface IDeleteCommentData {
-    deleteComment: IPost;
-}

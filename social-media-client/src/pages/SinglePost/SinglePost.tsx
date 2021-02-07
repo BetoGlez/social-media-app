@@ -54,7 +54,7 @@ const SinglePostPage: React.FC = () => {
                     <Divider />
                     {
                     !!user &&
-                        <CommentForm />
+                        <CommentForm postId={id}/>
                     }
                     <div className="p-d-flex p-flex-column p-mt-5">
                         {

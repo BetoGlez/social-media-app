@@ -97,4 +97,18 @@ export abstract class gqlMutations {
             }
         }
     `;
+    public static readonly CREATE_COMMENT = gql`
+        mutation createComment($postId: ID! $body: String!) {
+            createComment(postId: $postId body: $body) {
+                id
+                comments {
+                    id
+                    body
+                    username
+                    createdAt
+                }
+                commentCount
+            }
+        }
+    `;
 }

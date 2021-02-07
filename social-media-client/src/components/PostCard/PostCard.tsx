@@ -36,7 +36,7 @@ const PostCard: React.FC<PostCardProps> = (props) => {
             </div>
             {
             !!props.currentUser &&
-            <CommentForm />
+            <CommentForm postId={props.post.id}/>
             }
             <div className="p-d-flex p-flex-column p-mt-5">
                 {

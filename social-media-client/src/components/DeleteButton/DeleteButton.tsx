@@ -5,7 +5,8 @@ import { Button } from "primereact/button";
 import { ConfirmDialog } from 'primereact/confirmdialog';
 
 import { gqlMutations } from "../../graphql/mutations";
-import { IDeleteCommentData, IDeleteCommentPayload, IDeletePostPayload, IGetPostsData } from "../../graphql/models/post.model";
+import { IDeletePostPayload, IGetPostsData } from "../../graphql/models/post.model";
+import { IDeleteCommentData, IDeleteCommentPayload } from "../../graphql/models/comment.model";
 import { gqlQueries } from "../../graphql/queries";
 
 interface DeleteButtonProps {
