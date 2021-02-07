@@ -26,6 +26,15 @@ const apolloClient = new ApolloClient({
                         merge: false
                     }
                 }
+            },
+            Query: {
+                fields: {
+                    getPosts: {
+                        merge(_, incoming) {
+                            return incoming
+                        }
+                    }
+                }
             }
         }
     })
