@@ -83,4 +83,18 @@ export abstract class gqlMutations {
             deletePost(postId: $postId)
         }
     `;
+    public static readonly DELETE_COMMENT = gql`
+        mutation deleteComment($postId: ID! $commentId: ID!) {
+            deleteComment(postId: $postId commentId: $commentId) {
+                id
+                comments {
+                    id
+                    body
+                    username
+                    createdAt
+                }
+                commentCount
+            }
+        }
+    `;
 }

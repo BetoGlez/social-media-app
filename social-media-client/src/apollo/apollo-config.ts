@@ -24,6 +24,9 @@ const apolloClient = new ApolloClient({
                 fields: {
                     likes: {
                         merge: false
+                    },
+                    comments: {
+                        merge: false
                     }
                 }
             },

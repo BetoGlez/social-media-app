@@ -60,9 +60,15 @@ const SinglePostPage: React.FC = () => {
                         {
                         comments.map(comment => (
                             <div key={comment.id} className="p-d-flex p-flex-column p-mt-3" style={{ padding: "10px" }}>
-                                <div className="p-d-flex p-ai-center">
-                                    <Avatar className="p-mr-3" shape="circle" image={`https://picsum.photos/${Math.floor(Math.random() * (500 - 100) + 100)}`} />
-                                    <p className="p-m-0">{ comment.body }</p>
+                                <div className="p-d-flex p-ai-center p-jc-between">
+                                    <div className="p-d-flex p-ai-center">
+                                        <Avatar className="p-mr-3" shape="circle"
+                                            image={`https://picsum.photos/${Math.floor(Math.random() * (500 - 100) + 100)}`} />
+                                        <p className="p-m-0">{ comment.body }</p>
+                                    </div>
+                                    { user && user.username === comment.username &&
+                                        <DeleteButton commentId={comment.id} postId={postId}/>
+                                    }
                                 </div>
                                 <div className="p-d-flex p-mt-1 p-jc-end" style={{ opacity: "0.5" }}>
                                     <p className="p-m-0">{ comment.username } on { moment(comment.createdAt).fromNow() }</p>
