@@ -71,7 +71,6 @@ module.exports = {
 
             const post = await Post.findById(postId);
             if (post) {
-                console.log(post.body);
                 // Check if the post already contains a like for current user
                 if (post.likes.find(like => like.username === username)) {
                     // Post already liked, unlike it

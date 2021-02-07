@@ -54,7 +54,7 @@ const LikeButton: React.FC<LikeButtonProps> = (props) => {
         <div className={`${props.className} p-d-flex p-ai-center p-jc-start`}>
             <Tooltip target=".dataInfoTooltip" mouseTrack mouseTrackLeft={10} />
             <Button className="p-button-text p-button-rounded p-mr-1" onClick={clikLikeButton}
-                icon={`pi ${liked ? "pi-thumbs-down" : "pi-thumbs-up"}`} />
+                icon={`pi ${liked ? "pi-thumbs-down" : "pi-thumbs-up"}`} tooltip={liked ? "Unlike comment" : "Like comment"}/>
             <p className="p-m-0 dataInfoTooltip" data-pr-tooltip={composeUserLikes(props.likes)}>{props.likeCount}</p>
         </div>
     );
